@@ -1,6 +1,6 @@
 import streamlit as st
 from src.preprocessing.data_loader import DataLoader
-from src.visualization.components import CategoryDistributionAnalyzer, LikesSubscribersAnalyzer
+from src.visualization.components import CategoryDistributionAnalyzer, LikesSubscribersAnalyzer, YoutubersByCountryDist
 
 def main() -> None:
     st.set_page_config(page_title="YouTube Analytics", page_icon="📊", layout="wide")
@@ -53,6 +53,19 @@ def main() -> None:
                 st.markdown("### Key Insights")
                 for insight in result.insights:
                     st.write(f"- {insight}")
+                    
+        elif analysis == "Global Distribution":
+            st.subheader("Global Distribution of Top YouTubers")
+            
+            analyzer = YoutubersByCountryDist(df_top)
+            result = analyzer.create_visualization()
+            
+            if result.figure:
+                st.plotly_chart(result.figure, use_container_width=True)
+                
+                # Display insights
+                for insight in result.insights:
+                    st.info(insight)
 
 if __name__ == "__main__":
     main()
