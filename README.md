@@ -2,6 +2,11 @@
 
 A Streamlit-powered dashboard analyzing top YouTube channels, their performance metrics, and trends. This project implements various data visualizations and machine learning models to derive insights from YouTube channel data.
 
+## Preview
+
+![image](https://github.com/user-attachments/assets/ae8bbe59-c378-4303-932c-2e409485c960)
+
+
 ## Features
 
 - Top 100 YouTube channel category distribution
@@ -42,17 +47,19 @@ streamlit run app.py
 
 ```
 ├── app.py              # Main Streamlit application
-├── data/              # Data files
-├── src/               # Source code
-│   ├── preprocessing/ # Data preprocessing scripts
-│   ├── models/        # ML models
-│   └── visualization/ # Visualization functions
-└── requirements.txt   # Project dependencies
+├── data/               # Data files
+|   ├── top_100_youtubers.csv
+|   ├── avg_view_every_year.csv
+├── src/                # Source code
+│   ├── preprocessing/  # Data preprocessing scripts
+│   ├── models/         # ML models
+│   └── visualization/  # Visualization functions
+└── requirements.txt    # Project dependencies
 ```
 
 ## License
 
-MIT
+This project is part of an academic assignment and is available for educational purposes | Fanshawe
 
 ## Contributing
 
