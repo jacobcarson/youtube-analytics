@@ -59,7 +59,7 @@ streamlit run app.py
 
 ## License
 
-MIT
+This project is part of an academic assignment and is available for educational purposes | Fanshawe
 
 ## Contributing
 
