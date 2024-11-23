@@ -1,6 +1,6 @@
 import streamlit as st
 from src.preprocessing.data_loader import DataLoader
-from src.visualization.components import CategoryDistributionAnalyzer, LikesSubscribersAnalyzer, YoutubersByCountryDist
+from src.visualization.components import CategoryDistributionAnalyzer, LikesSubscribersAnalyzer, YoutubersByCountryDist, QuarterlyIncomeAnalyzer
 
 def main() -> None:
     st.set_page_config(page_title="YouTube Analytics", page_icon="📊", layout="wide")
@@ -66,6 +66,24 @@ def main() -> None:
                 # Display insights
                 for insight in result.insights:
                     st.info(insight)
+
+        elif analysis == "Income Analysis":
+            st.subheader("Average Quarterly Income of Top 5 YouTube Channels")
+            
+            analyzer = QuarterlyIncomeAnalyzer(df_top)
+            result = analyzer.create_visualization()
+            
+            if result.figure:
+                st.plotly_chart(result.figure, use_container_width=True)
+                
+                # Display metrics
+                st.metric("Top Channel", result.metrics['top_channel'])
+                st.metric("Top Income", result.metrics['top_income'])
+                
+                # Display insights
+                st.markdown("### Key Insights")
+                for insight in result.insights:
+                    st.info(f"- {insight}")
 
 if __name__ == "__main__":
     main()
