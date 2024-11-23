@@ -1,26 +1,7 @@
 import streamlit as st
 import pandas as pd
 from src.preprocessing.data_loader import DataLoader
-from src.visualization.components import CategoryDistributionAnalyzer, LikesSubscribersAnalyzer, YoutubersByCountryDist, QuarterlyIncomeAnalyzer
-
-ANALYZERS_CONFIG = {
-    "Category Distribution": {
-        "analyzer_class": CategoryDistributionAnalyzer,
-        "title": "Category Distribution of YouTube Channels",
-    },
-    "Likes vs Subscribers": {
-        "analyzer_class": LikesSubscribersAnalyzer,
-        "title": "Likes vs Subscribers Analysis",
-    },
-    "Global Distribution": {
-        "analyzer_class": YoutubersByCountryDist,
-        "title": "Global Distribution of Top YouTubers",
-    },
-    "Income Analysis": {
-        "analyzer_class": QuarterlyIncomeAnalyzer,
-        "title": "Average Quarterly Income of Top 5 YouTube Channels",
-    },
-}
+from src.constants import ANALYZERS_CONFIG
 
 def render(title: str, analyzer_class: any, df: pd.DataFrame):
     """Generic function to render analysis"""
