@@ -48,12 +48,13 @@ streamlit run app.py
 ```
 ├── app.py              # Main Streamlit application
 ├── data/               # Data files
-|   ├── top_100_youtubers.csv
-|   ├── avg_view_every_year.csv
+│   ├── top_100_youtubers.csv
+│   └── avg_view_every_year.csv
 ├── src/                # Source code
 │   ├── preprocessing/  # Data preprocessing scripts
 │   ├── models/         # ML models
 │   └── visualization/  # Visualization functions
+│       └── components/ # Analyzers per chart
 └── requirements.txt    # Project dependencies
 ```
 

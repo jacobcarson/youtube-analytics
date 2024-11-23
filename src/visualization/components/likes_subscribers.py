@@ -1,47 +1,6 @@
 import pandas as pd
 import plotly.express as px
-from dataclasses import dataclass
-from typing import Optional
-
-@dataclass
-class VisualizationResult:
-    """Class to hold visualization results and metrics"""
-    figure: Optional[object] = None
-    metrics: dict = None
-    insights: list[str] = None
-
-class CategoryDistributionAnalyzer:
-    """Analyzer for Category Distribution"""
-    
-    def __init__(self, df: pd.DataFrame):
-        self.df = df
-    
-    def create_visualization(self) -> VisualizationResult:
-        """Create pie chart for category distribution"""
-        if 'Category' not in self.df.columns:
-            return VisualizationResult()
-            
-        df_clean = self.df.dropna(subset=['Category'])
-        category_counts = df_clean['Category'].value_counts()
-        
-        fig = px.pie(
-            values=category_counts.values,
-            names=category_counts.index,
-            title='YouTube Channels by Category',
-            hole=0.3
-        )
-        
-        metrics = {
-            'top_category': category_counts.index[0],
-            'category_count': len(category_counts)
-        }
-        
-        insights = [
-            f"Most common category: {metrics['top_category']}",
-            f"Total number of categories: {metrics['category_count']}"
-        ]
-        
-        return VisualizationResult(figure=fig, metrics=metrics, insights=insights)
+from src.visualization.base import VisualizationResult
 
 class LikesSubscribersAnalyzer:
     """Analyzer for Likes vs Subscribers relationship"""
@@ -114,47 +73,6 @@ class LikesSubscribersAnalyzer:
             "The trend line shows the general relationship direction",
             "Outliers may represent channels with unusual engagement patterns",
             "Hover over points to see specific channel details"
-        ]
-        
-        return VisualizationResult(figure=fig, metrics=metrics, insights=insights)
-
-# Chart 3 Distribution of youtubers by country    
-class YoutubersByCountryDist:
-    """Analyzer for Global Distribution of YouTubers"""
-    
-    def __init__(self, df: pd.DataFrame):
-        self.df = df
-    
-    def create_visualization(self) -> VisualizationResult:
-        """Create bar chart for global distribution of YouTubers"""
-        if 'Country' not in self.df.columns:
-            return VisualizationResult()
-            
-        # YouTubers by country
-        country_counts = self.df['Country'].value_counts().reset_index()
-        country_counts.columns = ['Country', 'Count']
-        
-        # bar chart
-        fig = px.bar(
-            country_counts,
-            x='Country',
-            y='Count',
-            title='Global Distribution of Top YouTubers',
-            labels={'Count': 'Number of YouTubers'},
-            template='plotly_white'
-        )
-        
-        # metrics
-        metrics = {
-            'top_country': country_counts.iloc[0]['Country'],
-            'top_count': country_counts.iloc[0]['Count'],
-            'total_countries': len(country_counts)
-        }
-        
-        # insights
-        insights = [
-            f"Most YouTubers are from {metrics['top_country']} ({metrics['top_count']} channels)",
-            f"Top creators spread across {metrics['total_countries']} countries"
         ]
         
         return VisualizationResult(figure=fig, metrics=metrics, insights=insights)

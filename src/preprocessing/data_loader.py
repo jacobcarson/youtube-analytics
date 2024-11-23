@@ -1,6 +1,7 @@
 import pandas as pd
 from typing import Tuple, Optional
 import logging
+from src.constants import TOP_100_YOUTUBERS_PATH, AVG_VIEW_EVERY_YEAR_PATH
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -12,8 +13,8 @@ class DataLoader:
     def load_data() -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
         """Load and preprocess YouTube data from CSV files"""
         try:
-            df_top = pd.read_csv('./data/top_100_youtubers.csv')
-            df_view = pd.read_csv('./data/avg_view_every_year.csv')
+            df_top = pd.read_csv(TOP_100_YOUTUBERS_PATH)
+            df_view = pd.read_csv(AVG_VIEW_EVERY_YEAR_PATH)
             
             # Basic preprocessing
             df_top = df_top.drop_duplicates()
