@@ -2,7 +2,8 @@ from src.visualization.components import (
     CategoryDistributionAnalyzer, 
     LikesSubscribersAnalyzer, 
     YoutubersByCountryDist, 
-    QuarterlyIncomeAnalyzer
+    QuarterlyIncomeAnalyzer,
+    FollowersByCategoryAnalyzer
 )
 
 TOP_100_YOUTUBERS_PATH = './data/top_100_youtubers.csv'
@@ -24,5 +25,9 @@ ANALYZERS_CONFIG = {
     "Income Analysis": {
         "analyzer_class": QuarterlyIncomeAnalyzer,
         "title": "Average Quarterly Income of Top 5 YouTube Channels",
+    },
+    "Followers by Category": {
+        "analyzer_class": FollowersByCategoryAnalyzer,
+        "title": "Followers by Category",
     },
 }
