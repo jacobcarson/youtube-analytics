@@ -17,6 +17,7 @@ ANALYZERS_CONFIG = {
     "Likes vs Subscribers": {
         "analyzer_class": LikesSubscribersAnalyzer,
         "title": "Likes vs Subscribers Analysis",
+        "prediction": True
     },
     "Global Distribution": {
         "analyzer_class": YoutubersByCountryDist,
