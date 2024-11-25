@@ -3,7 +3,8 @@ from src.visualization.components import (
     LikesSubscribersAnalyzer, 
     YoutubersByCountryDist, 
     QuarterlyIncomeAnalyzer,
-    FollowersByCategoryAnalyzer
+    FollowersByCategoryAnalyzer,
+    YearlyViewAnalyzer,
 )
 
 TOP_100_YOUTUBERS_PATH = './data/top_100_youtubers.csv'
@@ -30,4 +31,8 @@ ANALYZERS_CONFIG = {
         "analyzer_class": FollowersByCategoryAnalyzer,
         "title": "Followers by Category",
     },
+    "Annual Views for Top Channels": {
+        "analyzer_class": YearlyViewAnalyzer,
+        "title": "Annual Views for Top Channels"
+    }
 }

@@ -40,12 +40,15 @@ def main() -> None:
     if df_top is not None and df_view is not None:
         # data preview
         st.subheader("Data Preview")
-        st.dataframe(df_top.head())
-        
-        # analysis based on selection
         analyzer_config = ANALYZERS_CONFIG.get(analysis)
-        if analyzer_config:
+
+        if analyzer_config["title"] == "Annual Views for Top Channels":
+            st.dataframe(df_view.head())
+            render(analyzer_config["title"], analyzer_config["analyzer_class"], df_view)
+        else:
+            st.dataframe(df_top.head())
             render(analyzer_config["title"], analyzer_config["analyzer_class"], df_top)
+            
 
 if __name__ == "__main__":
     main()
