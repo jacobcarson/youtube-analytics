@@ -7,3 +7,4 @@ class VisualizationResult:
     figure: Optional[object] = None
     metrics: dict = None
     insights: list[str] = None
+    extra_data: Optional[object] = None
