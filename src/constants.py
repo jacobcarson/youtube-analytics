@@ -5,40 +5,45 @@ from src.visualization.components import (
     QuarterlyIncomeAnalyzer,
     FollowersByCategoryAnalyzer,
     YearlyViewAnalyzer,
-    ClusteringDistributionAnalyzer
+    ClusteringDistributionAnalyzer,
+    MostSubscribersAnalyzer,
 )
 
 TOP_100_YOUTUBERS_PATH = './data/top_100_youtubers.csv'
 AVG_VIEW_EVERY_YEAR_PATH = './data/avg_view_every_year.csv'
 
 ANALYZERS_CONFIG = {
-    "Category Distribution": {
+    "Category Distribution": { # Chart 1
         "analyzer_class": CategoryDistributionAnalyzer,
         "title": "Category Distribution of YouTube Channels",
     },
-    "Likes vs Subscribers": {
+    "Likes vs Subscribers": { # Chart 2
         "analyzer_class": LikesSubscribersAnalyzer,
         "title": "Likes vs Subscribers Analysis",
         "prediction": True
     },
-    "Global Distribution": {
+    "Global Distribution": { # Chart 3
         "analyzer_class": YoutubersByCountryDist,
         "title": "Global Distribution of Top YouTubers",
     },
-    "Income Analysis": {
+    "Annual Views for Top Channels": { # Chart 4
+        "analyzer_class": YearlyViewAnalyzer,
+        "title": "Annual Views for Top Channels",
+    },
+    "Income Analysis": { # Chart 5
         "analyzer_class": QuarterlyIncomeAnalyzer,
         "title": "Average Quarterly Income of Top 5 YouTube Channels",
     },
-    "Followers by Category": {
+    "Clustering Channels": { # Chart 6
+        "analyzer_class": ClusteringDistributionAnalyzer,
+        "title": "Clustering Distribution of Channels",
+    },
+    "Followers by Category": { # Chart 7
         "analyzer_class": FollowersByCategoryAnalyzer,
         "title": "Followers by Category",
     },
-    "Annual Views for Top Channels": {
-        "analyzer_class": YearlyViewAnalyzer,
-        "title": "Annual Views for Top Channels"
-    },
-    "Clustering Channels": {
-        "analyzer_class": ClusteringDistributionAnalyzer,
-        "title": "Clustering Distribution of Channels"
+    "Most Subscribers Analysis": { # Chart 8
+        "analyzer_class": MostSubscribersAnalyzer,
+        "title": "Top Channel Analysis",
     }
 }
