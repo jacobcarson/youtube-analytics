@@ -19,6 +19,12 @@ class DataLoader:
             # Basic preprocessing
             df_top = df_top.drop_duplicates()
             df_view = df_view.drop_duplicates()
+
+            #manually re-categorize existing 'None' categories, remove empty columns
+            df_top['Category'] = df_top['Category'].fillna('Entertainment')
+            df_top = df_top.dropna(axis=1, how='all')
+
+
             
             logger.info("Data loaded successfully")
             return df_top, df_view

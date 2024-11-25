@@ -6,3 +6,7 @@ streamlit==1.29.0
 matplotlib==3.7.1
 seaborn==0.12.2
 statsmodels==0.14.4
+umap==0.1.1
+umap-learn==0.5.7
+hdbscan==0.8.40
+scipy.stats==1.13.1

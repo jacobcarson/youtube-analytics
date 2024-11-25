@@ -5,6 +5,7 @@ from src.visualization.components import (
     QuarterlyIncomeAnalyzer,
     FollowersByCategoryAnalyzer,
     YearlyViewAnalyzer,
+    ClusteringDistributionAnalyzer
 )
 
 TOP_100_YOUTUBERS_PATH = './data/top_100_youtubers.csv'
@@ -35,5 +36,9 @@ ANALYZERS_CONFIG = {
     "Annual Views for Top Channels": {
         "analyzer_class": YearlyViewAnalyzer,
         "title": "Annual Views for Top Channels"
+    },
+    "Clustering Channels": {
+        "analyzer_class": ClusteringDistributionAnalyzer,
+        "title": "Clustering Distribution of Channels"
     }
 }
