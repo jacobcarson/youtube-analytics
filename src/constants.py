@@ -5,6 +5,7 @@ from src.visualization.components import (
     QuarterlyIncomeAnalyzer,
     FollowersByCategoryAnalyzer,
     YearlyViewAnalyzer,
+    ClusteringDistributionAnalyzer,
     MostSubscribersAnalyzer,
 )
 
@@ -27,11 +28,15 @@ ANALYZERS_CONFIG = {
     },
     "Annual Views for Top Channels": { # Chart 4
         "analyzer_class": YearlyViewAnalyzer,
-        "title": "Annual Views for Top Channels"
+        "title": "Annual Views for Top Channels",
     },
     "Income Analysis": { # Chart 5
         "analyzer_class": QuarterlyIncomeAnalyzer,
         "title": "Average Quarterly Income of Top 5 YouTube Channels",
+    },
+    "Clustering Channels": { # Chart 6
+        "analyzer_class": ClusteringDistributionAnalyzer,
+        "title": "Clustering Distribution of Channels",
     },
     "Followers by Category": { # Chart 7
         "analyzer_class": FollowersByCategoryAnalyzer,
@@ -39,6 +44,6 @@ ANALYZERS_CONFIG = {
     },
     "Most Subscribers Analysis": { # Chart 8
         "analyzer_class": MostSubscribersAnalyzer,
-        "title": "Top Channel Analysis"
+        "title": "Top Channel Analysis",
     }
 }
