@@ -22,7 +22,25 @@ class CategoryDistributionAnalyzer:
             title='YouTube Channels by Category',
             hole=0.3
         )
-        
+
+        fig.update_layout(
+            # graph dimensions
+            width=650,
+            height=650,
+
+            # title
+            title_font_size=20,
+
+            # subtitle
+            legend=dict(
+                title="Categories",
+                font=dict(size=14),
+                orientation="v",
+                x=0,
+                y=1,
+            )
+        )
+
         metrics = {
             'top_category': category_counts.index[0],
             'category_count': len(category_counts)
