@@ -12,7 +12,6 @@ class YearlyViewAnalyzer:
     def create_visualization(self) -> VisualizationResult:
         """Create bar chart for average yearly views"""
         if 'Year' not in self.df.columns:
-            print("dead")
             return VisualizationResult()
         
         # Top 5 Channels by Total Views
@@ -42,13 +41,15 @@ class YearlyViewAnalyzer:
                 'y': 0.95,
                 'x': 0.5,
                 'xanchor': 'center',
-                'yanchor': 'top'
+                'yanchor': 'top',
             },
             xaxis=dict(title='Year', tickangle=45),
             yaxis=dict(title='Annual Views (M)', range=y_range, showgrid=True),
             template='plotly_white',
             font=dict(family="Arial", size=12),
             plot_bgcolor='rgba(0,0,0,0)',
+            width=1200,
+            height=800
         )
 
         top_channels_per_year = df_views.loc[df_views_sorted.groupby('Year')['Views'].idxmax()]

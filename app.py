@@ -12,7 +12,7 @@ def render(title: str, analyzer_class: any, df: pd.DataFrame, prediction: False)
     if result.figure:
         st.plotly_chart(result.figure, use_container_width=True)
         
-        # Display metrics if available
+        # Display metrics
         if result.metrics:
             st.markdown("### Metrics")
             for metric_name, metric_value in result.metrics.items():
@@ -24,7 +24,7 @@ def render(title: str, analyzer_class: any, df: pd.DataFrame, prediction: False)
             for insight in result.insights:
                 st.info(f"- {insight}")
 
-        # Optional: Render prediction analysis
+        #Render prediction analysis
         if prediction:
             # Add separator and extra spacing
             st.markdown("---")  # Separator line
@@ -116,10 +116,10 @@ def main() -> None:
         analyzer_config = ANALYZERS_CONFIG.get(analysis)
 
         if analyzer_config["title"] == "Annual Views for Top Channels":
-            st.dataframe(df_view.head())
+            st.dataframe(df_view.head(10))
             render(analyzer_config["title"], analyzer_config["analyzer_class"], df_view, analyzer_config.get("prediction", False))
         else:
-            st.dataframe(df_top.head())
+            st.dataframe(df_top.head(10))
             render(analyzer_config["title"], analyzer_config["analyzer_class"], df_top, analyzer_config.get("prediction", False))
 
 if __name__ == "__main__":

@@ -16,10 +16,10 @@ class LikesSubscribersAnalyzer:
     
     def calculate_metrics(self, df_clean: pd.DataFrame) -> dict:
         """Calculate analysis metrics"""
-        correlation = df_clean['Likes'].corr(df_clean['followers'])
+        correlation = round(df_clean['Likes'].corr(df_clean['followers']),3)
         return {
-            'correlation': correlation,
-            'correlation_strength': self._get_correlation_strength(correlation)
+            'Correlation Coefficient': correlation,
+            'Correlation Strength': self._get_correlation_strength(correlation)
         }
     
     @staticmethod 
@@ -54,23 +54,40 @@ class LikesSubscribersAnalyzer:
             df_clean,
             x='Likes',
             y='followers',
-            title='Relationship between Likes and Subscribers',
             labels={'Likes': 'Total Likes (log scale)', 'followers': 'Number of Subscribers (log scale)'},
             hover_data=['ChannelName'],
             trendline="ols",
             template='plotly_white',
             log_x=True,
-            log_y=True
+            log_y=True,
+            width=1200,
+            height=800
         )
         
         fig.update_traces(
             marker=dict(size=10, opacity=0.7),
-            selector=dict(mode='markers')
+            selector=dict(mode='markers'),
+            hoverinfo='x+y',
+            textfont_size=20,
+            textposition='middle center'
+        )
+
+        fig.update_layout(
+        title={
+                'text': '👍 Relationship between Likes and Subscribers',
+                'y': 0.95,
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top',
+        },
+        font=dict(family="Arial", size=12),
+        uniformtext_minsize=16,
+        uniformtext_mode='hide'
         )
         
         # insights
         insights = [
-            f"There is a {metrics['correlation_strength'].lower()} correlation (r={metrics['correlation']:.2f}) between likes and subscribers",
+            f"There is a {metrics['Correlation Strength'].lower()} correlation (R² Score={metrics['Correlation Coefficient']}) between likes and subscribers",
             "Channels are plotted on logarithmic scales to better show the relationship across different sizes",
             "The trend line shows the general relationship direction",
             "Outliers may represent channels with unusual engagement patterns",
@@ -109,7 +126,7 @@ class LikesSubscribersAnalyzer:
             y=model.y_test,
             mode='markers',
             name='Actual Data',
-            marker=dict(color='blue', opacity=0.6, size=8),
+            marker=dict(color='yellow', opacity=0.6, size=8),
         ))
 
         # Regression line
@@ -118,17 +135,25 @@ class LikesSubscribersAnalyzer:
             y=y_pred,
             mode='lines',
             name='Regression Line',
-            line=dict(color='red', width=2),
+            line=dict(color='red', width=1),
         ))
 
         fig.update_layout(
-            title="Predictive Relationship between Likes and Subscribers",
+            title={
+                'text': '📈 Predictive Relationship between Likes and Subscribers',
+                'y': 0.95,
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top',
+            },
             xaxis_title="Likes",
             yaxis_title="Subscribers",
             template="plotly_white",
             legend=dict(x=0.02, y=0.98),
-            height=400,
+            width=1200,
+            height=800,
             margin=dict(l=20, r=20, t=50, b=50),
+            font=dict(family="Arial", size=12),
         )
 
         # Add subtitle
@@ -160,7 +185,7 @@ class LikesSubscribersAnalyzer:
 
         # Insights
         insights = [
-                f"The R² score of the original linear regression model is {r2:.4f}.",
+                f"The R² score of the original linear regression model is {r2:.3f}.",
                 f"The intercept is {intercept:.2f}, which suggests that a channel with 0 likes is predicted to have approximately {intercept:,.0f} subscribers.",
                 f"The slope is {slope:.2f}, indicating that for every additional like, the number of subscribers increases by {slope:.2f} (or roughly 1 subscriber per 50 likes).",
                 "Other models were tested, as shown in the table below, with varying results.",
@@ -172,5 +197,5 @@ class LikesSubscribersAnalyzer:
             figure=fig, 
             metrics={"R² Score": f"{r2:.4f}", "Intercept": f"{intercept:.2f}", "Slope": f"{slope:.2f}"}, 
             insights=insights, 
-            extra_data=r2_results  # Include additional data for rendering
+            extra_data=r2_results
         )

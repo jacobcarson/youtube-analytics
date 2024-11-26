@@ -28,7 +28,9 @@ class FollowersByCategoryAnalyzer:
             y='Followers',
             title='Followers by Category',
             labels={'Category': 'Category', 'Followers': 'Followers (billion)'},
-            template='plotly_white'
+            template='plotly_white',
+            width=1200,
+            height=800
         )
         
         # Adjust layout with expanded y-axis range
@@ -36,7 +38,8 @@ class FollowersByCategoryAnalyzer:
         y_margin = max_followers * 0.2  # Add 20% margin
         fig.update_layout(
             xaxis_tickangle=45,
-            yaxis=dict(range=[0, max_followers + y_margin])  # Expanded y-axis range
+            yaxis=dict(range=[0, max_followers + y_margin]),
+            font=dict(family="Arial", size=12),
         )
 
         # Insights

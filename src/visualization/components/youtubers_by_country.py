@@ -23,22 +23,37 @@ class YoutubersByCountryDist:
             country_counts,
             x='Country',
             y='Count',
-            title='Global Distribution of Top YouTubers',
+            title= 'Global Distribution of Top YouTubers',   
             labels={'Count': 'Number of YouTubers'},
-            template='plotly_white'
+            template='plotly_white',
+            width=1200,
+            height=800
+        )
+
+        fig.update_layout(
+            title={
+                    'text': '🌐 Global Distribution of Top Youtube Channels',
+                    'y': 0.95,
+                    'x': 0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top',
+            },
+            font=dict(family="Arial", size=12),
+            uniformtext_minsize=16,
+            uniformtext_mode='hide'
         )
         
         # metrics
         metrics = {
-            'top_country': country_counts.iloc[0]['Country'],
-            'top_count': country_counts.iloc[0]['Count'],
-            'total_countries': len(country_counts)
+            'Top Country': country_counts.iloc[0]['Country'],
+            'Most "Top 100" Channels in a Country': country_counts.iloc[0]['Count'],
+            'Total Countries in the Top 100': len(country_counts)
         }
         
         # insights
         insights = [
-            f"Most YouTubers are from {metrics['top_country']} ({metrics['top_count']} channels)",
-            f"Top creators spread across {metrics['total_countries']} countries"
+            f"The highest population of \"Top 100\" YouTubers are from {metrics['Top Country']} ({metrics['Most "Top 100" Channels in a Country']} channels)",
+            f"The \"Top 100\" creators are spread across {metrics['Total Countries in the Top 100']} countries"
         ]
         
         return VisualizationResult(figure=fig, metrics=metrics, insights=insights)

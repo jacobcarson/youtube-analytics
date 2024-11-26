@@ -26,7 +26,7 @@ class MostSubscribersAnalyzer:
             x=0.5,
             y=0.7,
             showarrow=False,
-            font=dict(size=24, color="red"),
+            font=dict(size=24, color="white"),
             xref="paper",
             yref="paper",
         )
@@ -35,17 +35,23 @@ class MostSubscribersAnalyzer:
             x=0.5,
             y=0.5,
             showarrow=False,
-            font=dict(size=20, color="red"),
+            font=dict(size=20, color="white"),
             xref="paper",
             yref="paper",
         )
 
         fig.update_layout(
-            title="🌟 Channel with the Most Subscribers 🌟",
-            title_font_size=20,
-            title_font_color="green",
-            height=400,
-            paper_bgcolor="lightgray",
+            title={ 
+                    'text': '🌟 Channel with the Most Subscribers',
+                    'y': 0.95,
+                    'x': 0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top',                       
+                   },
+            title_font_color="black",
+            width=1200,
+            height=800,
+            paper_bgcolor="white",
             xaxis=dict(visible=False),
             yaxis=dict(visible=False),
         )

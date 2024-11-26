@@ -40,12 +40,12 @@ class ClusteringDistributionAnalyzer:
         processed_data = preprocessor.fit_transform(self.df)
 
         #UMAP Dimensionality Reduction
-        umap_params = {'n_neighbors': 10, 'min_dist': 0.5, 'n_components': 3, 'random_state': 42}
+        umap_params = {'n_neighbors': 10, 'min_dist': 0.1, 'n_components': 3, 'random_state': 42}
         umap_model = UMAP(**umap_params)
         umap_embeddings = umap_model.fit_transform(processed_data)
 
         #HDBSCAN Clustering
-        hdbscan_params = {'min_cluster_size': 3}
+        hdbscan_params = {'min_cluster_size': 2}
         hdbscan_model = hdbscan.HDBSCAN(**hdbscan_params)
         cluster_labels = hdbscan_model.fit_predict(umap_embeddings)
 
@@ -156,17 +156,32 @@ class ClusteringDistributionAnalyzer:
                 color=self.df['Cluster_Name'].astype(str),
                 hover_data=self.df[numerical_features + categorical_features],
                 title="3D UMAP Clusters",
-                labels={'color': 'Cluster Name'}
+                labels={'color': 'Cluster Name'},
+                height=800,
+                width=1200
             )
         
+        fig.update_layout(
+        title={
+                'text': '✨ Category Clustering of Top Youtube Channels',
+                'y': 0.95,
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top',
+        },
+        font=dict(family="Arial", size=12),
+        uniformtext_minsize=16,
+        uniformtext_mode='hide'
+        )
+        
         metrics = {
-            'num_clusters': len(set(cluster_labels)) - (1 if -1 in cluster_labels else 0),
-            'num_outliers': sum(cluster_labels == -1),
+            'Number of Clusters': len(set(cluster_labels)) - (1 if -1 in cluster_labels else 0),
+            'Number of Outliers': sum(cluster_labels == -1),
         }
 
         insights = [
-            f"Number of clusters identified: {metrics['num_clusters']}",
-            f"Number of outliers detected: {metrics['num_outliers']}",
+            f"Number of clusters identified: {metrics['Number of Clusters']}",
+            f"Number of outliers detected: {metrics['Number of Outliers']}",
         ]
         
         return VisualizationResult(figure=fig, metrics=metrics, insights=insights)

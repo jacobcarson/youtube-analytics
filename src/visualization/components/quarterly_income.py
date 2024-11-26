@@ -60,15 +60,17 @@ class QuarterlyIncomeAnalyzer:
             template='plotly_white',
             font=dict(family="Arial", size=12),
             plot_bgcolor='rgba(0,0,0,0)',
+            width=1200,
+            height=800
         )
         
         # Metrics and insights
         metrics = {
-            'top_channel': top_channel['ChannelName'],
-            'top_income': f"${top_channel['Average Income'] / 1_000_000:.1f}M"
+            'Top Earning Channel': top_channel['ChannelName'],
+            'Top Earning Channel\'s Quarterly Income': f"${top_channel['Average Income'] / 1_000_000:.1f}M"
         }
         insights = [
-            f"The top channel is {metrics['top_channel']} with an average income of {metrics['top_income']} per quarter.",
+            f"The top channel is {metrics['Top Earning Channel']} with an average income of {metrics['Top Earning Channel\'s Quarterly Income']} per quarter.",
             "The highlighted bar represents the channel with the highest average income.",
             "The chart uses clear annotations to make data interpretation easier."
         ]
